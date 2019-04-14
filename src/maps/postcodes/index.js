@@ -49,7 +49,7 @@ export default function postcodes(libraries, postcodes) {
 		.enter()
 		.append("image")
 		.attr("xlink:href", d => {
-			const url = `http://${"abc"[d.y % 3]}.tile.openstreetmap.org/${
+			const url = `https://${"abc"[d.y % 3]}.tile.openstreetmap.org/${
 				d.z
 			}/${d.x}/${d.y}.png`;
 			return url;
