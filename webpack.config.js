@@ -1,8 +1,14 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
 	entry: "./src/index.js",
+	optimization: {
+		minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
+	},
 	output: {
 		filename: "bundle.js",
 		path: path.resolve(__dirname, "dist")
@@ -11,7 +17,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.css$/,
-				use: ["style-loader", "css-loader"]
+				use: [MiniCssExtractPlugin.loader, "css-loader"]
 			},
 			{
 				test: /\.html$/,
@@ -29,9 +35,13 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: "src/index.html"
+		}),
+		new MiniCssExtractPlugin({
+			filename: "[name].css",
+			chunkFilename: "[id].css"
 		})
 	],
-	mode: "development",
+	mode: "production",
 	devServer: {
 		contentBase: "./dist"
 	},
