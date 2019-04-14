@@ -7,7 +7,10 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
 	entry: "./src/index.js",
 	optimization: {
-		minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin({})]
+		minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin({})],
+		splitChunks: {
+			chunks: 'all'
+		}
 	},
 	output: {
 		filename: "bundle.js",
