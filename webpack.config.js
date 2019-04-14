@@ -7,13 +7,10 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
 	entry: "./src/index.js",
 	optimization: {
-		minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin({})],
-		splitChunks: {
-			chunks: 'all'
-		}
+		minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin({})]
 	},
 	output: {
-		filename: "[name].bundle.js",
+		filename: "bundle.js",
 		path: path.resolve(__dirname, "dist")
 	},
 	module: {
@@ -44,7 +41,7 @@ module.exports = {
 			chunkFilename: "[id].css"
 		})
 	],
-	mode: "production",
+	mode: "development",
 	devServer: {
 		contentBase: "./dist"
 	},
