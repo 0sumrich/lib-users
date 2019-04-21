@@ -3,9 +3,10 @@ import ages from "./ages/index.js";
 import maps from "./maps/index.js";
 import libFix from "./maps/libFix.js";
 
-const ageGroups = require("./data/ageGroups").data;
-const postcodes = require("./data/postcodes").data;
-const libraries = libFix(require("./data/barnetLibraries"));
+import ageGroups from "./data/ageGroups.json";
+import postcodes from "./data/postcodes.json";
+import libraries from "./data/barnetLibraries.json";
 
-ages(ageGroups);
-maps(libraries, postcodes);
+ages(ageGroups.data);
+maps(libFix(libraries), postcodes.data);
+

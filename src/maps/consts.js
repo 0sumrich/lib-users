@@ -1,7 +1,8 @@
-import * as d3 from "d3-geo";
+import barnet from "../data/barnet.json";
+import { geoMercator } from "d3";
+import { geoPath } from "d3-geo";
 import { tile } from "d3-tile";
-d3.tile = tile;
-const geo = require("../data/barnet.json").data;
+const geo = barnet.data;
 
 const margin = { top: 50, right: 140, bottom: 0, left: 0 };
 const width = 1050 - margin.left - margin.right;
@@ -18,11 +19,11 @@ const extent = [
 	[width - mapPadding.left, height - mapPadding.top]
 ];
 
-const projection = d3.geoMercator().fitExtent(extent, geo);
+const projection = geoMercator().fitExtent(extent, geo);
 
-const path = d3.geoPath().projection(projection);
+const path = geoPath().projection(projection);
 
-const tiles = d3.tile()
+const tiles = tile()
 	.size([width, height])
 	.scale(projection.scale() * tau)
 	.translate(projection.translate())();

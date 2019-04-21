@@ -9,6 +9,9 @@ module.exports = {
 	optimization: {
 		minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin({})]
 	},
+	performance: {
+		hints: false
+	},
 	output: {
 		filename: "bundle.js",
 		path: path.resolve(__dirname, "dist")
@@ -29,6 +32,17 @@ module.exports = {
 						}
 					}
 				]
+			},
+			{
+				type: "javascript/auto",
+				test: /\.json$/,
+				use: [
+					{
+						loader: "file-loader",
+						options: {}
+					}
+				],
+				include: /\.\/src/
 			}
 		]
 	},
@@ -41,9 +55,6 @@ module.exports = {
 			chunkFilename: "[id].css"
 		})
 	],
-	mode: "development",
-	devServer: {
-		contentBase: "./dist"
-	},
+	mode: "production",
 	devtool: "inline-source-map"
 };
