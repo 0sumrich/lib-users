@@ -9,4 +9,3 @@ import libraries from "./data/barnetLibraries.json";
 
 ages(ageGroups.data);
 maps(libFix(libraries), postcodes.data);
-

@@ -105,7 +105,7 @@ export default function perCapMap(libraries) {
 		.attr("alignment-baseline", "middle")
 		.text("Barnet Libraries");
 
-	const title = "Active Library Members per Capita";
+	const title = "Active Library Members per 1000 residents";
 
 	svg.append("text")
 		.attr("x", (width + margin.left + margin.right) / 2)
